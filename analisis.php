@@ -68,7 +68,7 @@
 									while($row = $sql->fetch_assoc()) {
 										echo "<tr>";
 											echo "<td>".$aux."</td>";
-											echo "<td>".$row["nombre"]."</td>";
+											echo "<td>"."<p id='$aux-name'>".$row["nombre"]."</p>"."</td>";
 											echo "<td>"."<p id='$aux'>".$row["costo"]."</p>"."</td>";
 										echo "</tr>";
 										$aux++;
@@ -83,7 +83,15 @@
 
 		        </tbody>
 		      </table>
-		      <p id="demo"></p>
+		      <br><br>
+		      <div class="row center-align">
+		      	<div class="col s8">
+		      		Proyectos prioritarios ejecutables con el presupuesto de inversión: 
+		      	</div>
+		      	<div class="col s4">
+		      		<p id="demo"></p>
+		      	</div>
+		      </div>
 		</div>
 	</div>
 </div>
@@ -95,20 +103,22 @@
 </body>
 <script type="text/javascript">
 	function calcular(){
+		document.getElementById("demo").innerHTML = "";
 		var cant = document.getElementById("inversion").value;
 		var proy = new Array();
-		for(i=1; i<= <?php echo $result ?> ;i++){
-			var aux = toString(i);
-			proy[i] = parseInt(document.getElementById(aux).innerHTML);
-			alert(document.getElementById(aux).innerHTML);
+		var name = new Array();
+		var key = "-name";
+		for(i=1; i<= <?php echo $result ?> ; i++){
+			proy[i] = parseInt(document.getElementById(i.toString()).innerHTML);
+			name[i] = document.getElementById(i.toString()+key).innerHTML;
 		}
-		var mayor = 0;
 		var sum =0;
 		for(j=1; j<= <?php echo $result ?>; j++){
-			if(cant > proy[i]){
-				document.getElementById("demo").innerHTML += "Proyecto " + proy[i] + "<br>"; 
-				mayor = proy[i];
-				sum += proy[i];
+			if(cant > proy[j]){
+				if((sum+proy[j]) < cant ){
+					document.getElementById("demo").innerHTML += name[j] + "<br>"; 
+					sum += proy[j];
+				}
 			}
 
 			if(sum > cant){
