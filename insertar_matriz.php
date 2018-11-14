@@ -16,21 +16,23 @@
 	for($i=1; $i<=$crit; $i++){
 		for($j=1; $j<=$proy; $j++){
 			$valor = $data[$aux];
-			$sql = "insert into CRITERIO_DE_PROYECTO(cid, pid, valor) values ('$i', '$j', '$valor');";
-			$conexion->query($sql);
+			$sql3 = "insert into CRITERIO_DE_PROYECTO(cid, pid, valor) values ('$i', '$j', '$valor');";
+			$conexion->query($sql3);
 			$aux++;
 		}
 	}
-	echo $sql;
+
 			if($conexion->affected_rows>0){
 				echo'<script type="text/javascript">
 				alert("Criterio insertado");
+				window.location.href = "insertar_matriz2.php";
 				</script>';
 			}
 
 			else{ 
 				echo'<script type="text/javascript">
 				alert("Criterio no insertado");
+				window.location.href = "insertar_matriz2.php";
 				</script>';
 			}  
    

@@ -35,7 +35,7 @@
 		          <tr>
 		              <th>Criterio</th>
 		              <th>Ponderación</th>
-		              <!--<?php
+		              <?php
 		              	$conexion = new mysqli("localhost", "Administrador", "proyectos", "seleccion_proyectos");
 								if ($conexion->connect_errno) 
 								{
@@ -63,9 +63,7 @@
 										echo "0 Proyectos";
 								}
 							$conexion->close();
-		              ?>-->
-		              <th>Valor</th>
-		              <th>Proyecto</th>
+		              ?>
 		          </tr>
 		        </thead>
 
@@ -79,7 +77,7 @@
 								   	echo "<br>Error: " . $conexion->connect_error;
 								    exit;
 								}
-								$sql2 = $conexion->query("select c.ID, c.nombre, m.pid, c.ponderacion, m.valor from criterio c, matriz m where c.ID = m.cid");
+								$sql2 = $conexion->query("select * from criterio");
 								$result2 = $sql2->num_rows;
 								if ($result2 > 0) {
 								// output data of each row
@@ -87,72 +85,62 @@
 								  $ID_TABLA = 0; 
 								  $fil = 1; 
 								  $aux=1;
-								  $aux2=1;
+								  $aux2=10;
 									while($row2 = $sql2->fetch_assoc()) {
 										echo "<tr>";
 										echo "<td>".$row2["nombre"]."</td><td>".$row2["ponderacion"]."</td>";
-										echo "<td>".$row2["valor"]."</td>";
-										echo "<td>".$row2["pid"]."</td>";
-										echo "</tr>";
-										}
+										echo "<td>".$aux."</td>";
+												$aux++; 
+										echo "<td>".$aux2."</td>";
+										$aux2++;
+
+										/*$sql3 = $conexion->query("select c.ID, c.nombre, m.pid, c.ponderacion, m.valor from criterio c, matriz m where c.ID = m.cid");
+										$result3 = $sql3->num_rows;
+										if ($result3 > 0) {
+										// output data of each row
+										  $aux = 1;
+											while($row3 = $sql3->fetch_assoc()) {
+
+
+												if($aux == $row3["ID"]){
+													if($row3["pid"]==$aux){
+														echo "<td>".$row3["valor"]."</td>";
+														$aux++;
+														echo $row3["ID"];
+													}
+													if($aux == $result3)
+														$aux=1;
+														
+												}
+
+											}*/
+									
 										
 									}
 										  
-		
+									echo "</tr>"; 
+											
+								} 
+							
+
+
+											
 
 							$conexion->close();
 						?>
 		        </tbody>
 		      </table>
 		</div>
-		<div class="card">
-			<table class="centered striped">
-		      	<thead>
-		      		<tr><th colspan="2">Prioridad de proyectos</th></tr>
-		      		<tr>
-		      			<th>Proyecto</th>
-		      			<th>Total</th>
-		      		</tr>
-		      	</thead>
-		      	<tbody>
-		      		<?php
-		          		$conexion = new mysqli("localhost", "Administrador", "proyectos", "seleccion_proyectos");
-								if ($conexion->connect_errno) 
-								{
-									echo "<br>Error: Fallo al conectarse a MySQL debido a:" ;
-								 	echo "<br>Errno: " . $conexion->connect_errno;
-								   	echo "<br>Error: " . $conexion->connect_error;
-								    exit;
-								}
-								$sql3 = $conexion->query("select pid, sum(valor) as valor from matriz group by pid having avg(valor) order by valor desc");
-								$result3 = $sql3->num_rows;
-								if ($result3 > 0) {
-									while($row3 = $sql3->fetch_assoc()) {
-										echo "<tr>";
-											echo "<td>".$row3["pid"]."</td>";
-											echo "<td>".$row3["valor"]."</td>";
-										echo "</tr>";
-										}
-										
-									}
-										  
-		
-
-							$conexion->close();
-						?>
-		      	</tbody>
-		      </table>
-		</div>
 	</div>
 </div>
 <div class="fixed-action-btn horizontal click-to-toggle">
-    <a class="btn-floating btn-large blue" href="analisis.php">
+    <a class="btn-floating btn-large blue" href="analisis.html">
       <i class="material-icons">arrow_right</i>
     </a>
 </div>
 
 <div class="left-page horizontal click-to-toggle">
-    <a class="btn-floating btn-large blue" href="asignacion_valores.php">
+    <a class="btn-floating btn-large blue" href="valores.html">
       <i class="material-icons">arrow_left</i>
     </a>
 </div>

@@ -9,12 +9,14 @@
 		}
 		$sql2 = $conexion->query("select id,tipo, valor from criterio");
 		$result2 = $sql2->num_rows;
-		if ($result > 0) {
+		if ($result2 > 0) {
+			$cont;
 			while($row2 = $sql2->fetch_assoc()) {
+				$cont = $row2["id"];
 				if($row2["tipo"]=="cuantitativo"){
 					if($row2["valor"]=="menor"){
 						$int = -1;
-						$sql = $conexion->query("select * from criterio_de_proyecto where cid = 1 order by valor asc");
+						$sql = $conexion->query("select * from criterio_de_proyecto where cid = '$cont' order by valor asc");
 						$result = $sql->num_rows;
 						if ($result > 0) {
 							while($row = $sql->fetch_assoc()) {
