@@ -96,7 +96,7 @@
 	</div>
 </div>
 <div class="left-page horizontal click-to-toggle">
-    <a class="btn-floating btn-large blue" href="matriz.html">
+    <a class="btn-floating btn-large blue" href="matriz_decision.php">
       <i class="material-icons">arrow_left</i>
     </a>
 </div>
@@ -114,8 +114,8 @@
 		}
 		var sum =0;
 		for(j=1; j<= <?php echo $result ?>; j++){
-			if(cant > proy[j]){
-				if((sum+proy[j]) < cant ){
+			if(cant >= proy[j]){
+				if((sum+proy[j]) <= cant ){
 					document.getElementById("demo").innerHTML += name[j] + "<br>"; 
 					sum += proy[j];
 				}
