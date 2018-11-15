@@ -93,6 +93,7 @@
 		      	</div>
 		      </div>
 		</div>
+		<a class="waves-effect waves-light btn right red" onclick="del()"><i class="material-icons left">restore_page</i>Reiniciar</a>
 	</div>
 </div>
 <div class="left-page horizontal click-to-toggle">
@@ -126,6 +127,29 @@
 			}
 		}
 
+	}
+
+	function del(){
+		swal({
+		  title: '¿Estás seguro de reiniciar el sistema?',
+		  text: "Perderas la información obtenida",
+		  type: 'warning',
+		  showCancelButton: true,
+		  confirmButtonColor: '#3085d6',
+		  cancelButtonColor: '#d33',
+		  confirmButtonText: 'Sí, Reinicialo!'
+		}).then((result) => {
+		  if (result.value) {
+		    swal(
+		      'Reinicio completado!',
+		      'El sistema ha sido reiniciado.',
+		      'success',
+		    )
+		    setTimeout(function () {
+		       window.location.href = "borrar.php"; //will redirect to your blog page (an ex: blog.html)
+		    }, 2000); //will call the function after 2 secs.
+		  }
+		})
 	}
 </script>
 </html>

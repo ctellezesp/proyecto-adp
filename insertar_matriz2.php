@@ -17,7 +17,7 @@
 				if($row2["tipo"]=="Cuantitativo"){
 					if($row2["valor"]=="menor"){
 						$int = -1;
-						$sql = $conexion->query("select * from criterio_de_proyecto where cid = '$cont' order by valor asc");
+						$sql = $conexion->query("select * from criterio_de_proyecto where cid = '1' order by valor desc");
 						$result = $sql->num_rows;
 						if ($result > 0) {
 							while($row = $sql->fetch_assoc()) {

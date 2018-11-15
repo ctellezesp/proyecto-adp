@@ -35,7 +35,7 @@
 		          <tr>
 		              <th>Criterio</th>
 		              <th>Ponderación</th>
-		              <!--<?php
+		              <?php
 		              	$conexion = new mysqli("localhost", "Administrador", "proyectos", "seleccion_proyectos");
 								if ($conexion->connect_errno) 
 								{
@@ -63,9 +63,7 @@
 										echo "0 Proyectos";
 								}
 							$conexion->close();
-		              ?>-->
-		              <th>Valor</th>
-		              <th>Proyecto</th>
+		              ?>
 		          </tr>
 		        </thead>
 
